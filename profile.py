@@ -49,7 +49,7 @@ bslan.addInterface(bs.interface)
 for name in node_names:
   node = request.RawPC(name)
   iface = node.addInterface("if1")
-  lan.addInterface(iface)
+  nlan.addInterface(iface)
 
   # Connect nfs node to blockstore on special LAN
   if name == "nfs":
