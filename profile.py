@@ -35,6 +35,8 @@ for i in range(params.num_nodes - 1):
 
 # Setup a LAN
 lan = request.LAN()
+lan.best_effort = True
+lan.vlan_tagging = True
 
 for name in node_names:
   node = request.RawPC(name)
