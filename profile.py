@@ -22,7 +22,7 @@ pc.defineParameter("num_nodes", "Number of Client Nodes",
     portal.ParameterType.INTEGER, 1, num_nodes)
 
 # Create configuration parameter for the dataset to mount.
-datasets = [ ("urn:publicid:IDN+utah.cloudlab.us:ramcloud-pg0+stdataset+jde-test-stdataset01",
+datasets = [ ("urn:publicid:IDN+utah.cloudlab.us:ramcloud-pg0+stdataset+ldbc-snb-sf1000",
      "stdataset01") ]
 pc.defineParameter("dataset", "Dataset to Mount", 
     portal.ParameterType.IMAGE, datasets[0], datasets)
