@@ -1,10 +1,7 @@
-"""
-This profile mounts an Emulab hosted dataset on a number of servers through an
-NFS server. 
+"""This profile mounts an Emulab hosted dataset on a number of servers through
+an NFS server. 
 
-Instructions: 
-The dataset is mounted on /mnt/dataset on the client nodes.
-"""
+Instructions: The dataset is mounted on /mnt/dataset on the client nodes.  """
 
 # Import the Portal object.
 import geni.portal as portal
