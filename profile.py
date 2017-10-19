@@ -30,7 +30,7 @@ pc.defineParameter("dataset", "Dataset to Mount",
 params = pc.bindParameters()
 
 node_names = ["nfs"]
-for i in range(params.num_nodes - 1):
+for i in range(params.num_nodes):
   node_names.append("n%02d" % (i + 1))
 
 # Setup a LAN for the clients
