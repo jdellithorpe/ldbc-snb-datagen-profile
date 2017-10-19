@@ -37,11 +37,13 @@ for i in range(params.num_nodes - 1):
 clan = request.LAN()
 clan.best_effort = True
 clan.vlan_tagging = True
+clan.link_multiplexing = True
 
 # Setup a LAN just for the blockstore
 bslan = request.LAN()
 bslan.best_effort = True
 bslan.vlan_tagging = True
+bslan.link_multiplexing = True
 
 for name in node_names:
   node = request.RawPC(name)
