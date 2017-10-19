@@ -51,7 +51,7 @@ for name in node_names:
 
   iface = node.addInterface("if1")
 
-  lan.addInterface(iface)
+  clan.addInterface(iface)
 
   # If this is the NFS server, then connect the remote blockstore
   if name == "nfs":
