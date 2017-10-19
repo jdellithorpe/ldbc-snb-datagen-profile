@@ -33,26 +33,33 @@ node_names = ["nfs"]
 for i in range(params.num_nodes - 1):
   node_names.append("n%02d" % (i + 1))
 
-# Setup a LAN
-lan = request.LAN()
-lan.best_effort = True
-lan.vlan_tagging = True
+# Setup a LAN for the clients
+clan = request.LAN()
+clan.best_effort = True
+clan.vlan_tagging = True
+
+# Setup a LAN just for the blockstore
+bslan = request.LAN()
+bslan.best_effort = True
+bslan.vlan_tagging = True
 
 for name in node_names:
   node = request.RawPC(name)
   
-  if name == "nfs":
-    # Ask for a 200GB file system mounted at /shome on rcnfs
-    bs = request.RemoteBlockstore('b1', '/mnt/dataset', 'if1')
-    bs.dataset = params.dataset
-    lan.addInterface(bs.interface)
-
   # Install and execute a script that is contained in the repository.
-  node.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
+  node.addService(pg.Execute(shell="sh", command="/local/repository/setup.sh"))
 
   iface = node.addInterface("if1")
 
   lan.addInterface(iface)
+
+  # If this is the NFS server, then connect the remote blockstore
+  if name == "nfs":
+    bs = request.RemoteBlockstore('b1', '/mnt/dataset', 'if1')
+    bs.dataset = params.dataset
+    bslan.addInterface(bs.interface)
+    bsiface = node.addInterface("if2")
+    bslan.addInterface(bsiface)
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
